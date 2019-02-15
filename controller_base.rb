@@ -1,6 +1,9 @@
 require 'active_support/inflector'
 require 'erb'
-require_relative 'session'
+require 'active_support' 
+require 'active_support/core_ext'
+require_relative './session'
+require_relative './flash'
 
 class ControllerBase
   attr_reader :req, :res, :params,:session
@@ -50,6 +53,10 @@ class ControllerBase
   def invoke_action(name)
     self.send(name)
     render(name) unless already_built_response?
+  end
+
+  def flash
+    @flash ||= Flash.new(@req)
   end
 end
 
