@@ -15,7 +15,6 @@ class Route
     data = @pattern.match(req.path)
 
     params = Hash[data.names.zip(data.captures)]
-
     controller = controller_class.new(req,res,params)
     controller.invoke_action(self.action_name)
   end

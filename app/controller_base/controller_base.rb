@@ -9,9 +9,10 @@ class ControllerBase
   attr_reader :req, :res, :params,:session
   attr_accessor :response_built
 
-  def initialize(req, res)
+  def initialize(req, res,params = {})
     @req, @res = req, res
     @response_built = false
+    @params = params.merge(req.params)
   end
 
   def already_built_response?
@@ -57,6 +58,10 @@ class ControllerBase
 
   def flash
     @flash ||= Flash.new(@req)
+  end
+  
+  def controller_name
+    self.class.to_s.underscore
   end
 end
 

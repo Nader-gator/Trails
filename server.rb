@@ -1,14 +1,14 @@
 require 'rack'
-require_relative 'app/router'
-require_relative 'app/static'
+require_relative 'app/controller_base/router'
+require_relative 'app/controller_base/static'
+require_relative 'app/controller_base/controller_base'
+require_relative 'RecordKeeper/record_keeper'
 
-# class Controller < ControllerBase
-#   def method
-#     #...
-#   end
-# end
+# require_relative 'app/models/MODEL'
+# require_relative 'app/controllers/CONTROLLER'
 
 router = Router.new
+
 router.draw do
   # get Regexp.new("^/PATH-HERE$"), ControllerClass, :method
   # get Regexp.new("^/PATH-HERE/(?<id>\\d+)$"), ControllerClass,:method
