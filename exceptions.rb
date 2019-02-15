@@ -10,7 +10,7 @@ class ShowExceptions
   def call(env)
     self.app.call(env)
   rescue Exception => e
-    self.render_exception
+    self.render_exception(e)
   end
   end
 
@@ -18,7 +18,7 @@ class ShowExceptions
 
   def render_exception(e)
     path = File.dirname(__FILE__)
-    template_fname = File.join(path,"views","default", "rescue.html.erb")
+    template_fname = File.join(path,"views","templates", "rescue.html.erb")
     template = File.read(template_fname)
     body = ERB.new(template).result(binding)
 
