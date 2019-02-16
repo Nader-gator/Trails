@@ -23,6 +23,7 @@ class ControllerBase
     raise "Double render error" if self.already_built_response?
     self.response_built = true
     self.session.store_session(@res)
+    self.flash.store_flash(@res)
 
   end
 
